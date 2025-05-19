@@ -89,6 +89,9 @@ int tempConverter() {
 int main() {
 	std::string response;
     while (true) {
+        if (std::cin.eof()){
+            std::cin.clear();
+        }
         if (tempConverter() != 0) {
             std::cout << "Conversion failed. Please try again.\n";
         }
