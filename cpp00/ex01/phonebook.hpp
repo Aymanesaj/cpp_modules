@@ -2,6 +2,9 @@
 #define PHONEBOOK_HPP
 
 #include <iostream>
+#include <sstream>
+#include <string>
+#include <algorithm>
 
 class Contact
 {
@@ -32,8 +35,14 @@ public:
 class PhoneBook
 {
 private:
-	Contact contacts[8];
 public:
+	Contact contacts[8];
+	int		size;
+	
 };
+
+void	search_phonebook(PhoneBook &phonebook);
+bool 	is_number(const std::string& s);
+void 	readLineOrExit(std::string &out);
 
 #endif

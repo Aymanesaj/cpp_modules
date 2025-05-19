@@ -26,7 +26,7 @@ double kelvinToFahrenheit(double kelvin) {
 }
 
 void printError(const std::string &msg) {
-    std::cout << "Error: " << msg << "\n";
+    std::cerr << "Error: " << msg << "\n";
 }
 
 bool isValidUnit(char c) {
