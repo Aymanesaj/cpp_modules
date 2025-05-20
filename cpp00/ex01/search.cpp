@@ -38,7 +38,7 @@ void	search_prompt(PhoneBook &phonebook)
 	std::cout << std::endl;
 }
 
-bool is_number(const std::string& s)
+bool	is_number(const std::string& s)
 {
 	int it = 0;
 	if (s.empty())

@@ -15,6 +15,7 @@ private:
 	std::string	phone_number;
 	std::string	darkest_secret;
 public:
+	/*setters and getters*/
 	// first name
 	void setFirstName(const std::string &fn) { first_name = fn; }
 	std::string	getFirstName() { return (first_name); }

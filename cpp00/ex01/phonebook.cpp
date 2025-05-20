@@ -1,10 +1,11 @@
 #include "phonebook.hpp"
 
-void readLineOrExit(std::string &out) {
-    if (!std::getline(std::cin, out)){
-        std::cout << "\nEnd of input detected. Exiting.\n";
-        std::exit(0);
-    }
+void readLineOrExit(std::string &out)
+{
+	if (!std::getline(std::cin, out)){
+		std::cout << "\nEOF detected. Exiting...\n";
+		std::exit(0);
+	}
 }
 
 void	add_contact(PhoneBook &phonebook)
