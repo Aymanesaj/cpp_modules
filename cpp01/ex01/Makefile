@@ -1,5 +1,5 @@
 NAME = Zombie
-SRC = main.cpp newZombie.cpp randomChump.cpp
+SRC = main.cpp Zombie.cpp  zombieHorde.cpp
 CC = c++
 RM = rm -rf
 CFLAGS = -Wall -Wextra -Werror -std=c++98

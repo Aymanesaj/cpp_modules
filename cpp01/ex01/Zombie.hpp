@@ -9,13 +9,13 @@ private:
     std::string name;
 public:
     void        announce( void );
+    void        SetName( std::string name );
     std::string	GetName( void );
     ~Zombie();
     Zombie();
     Zombie(std::string name);
 };
 
-void randomChump( std::string name );
-Zombie* newZombie( std::string name );
+Zombie* zombieHorde( int N, std::string name );
 
 #endif

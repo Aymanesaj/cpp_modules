@@ -1,6 +1,8 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name):name(name) {}
+Zombie::Zombie(std::string name) : name(name){}
+
+Zombie::Zombie(){}
 
 Zombie::~Zombie()
 {
@@ -17,10 +19,7 @@ std::string	Zombie::GetName( void )
 	return (name);
 }
 
-int main()
+void Zombie::SetName( std::string NewName )
 {
-	randomChump("stack");
-	Zombie* zombie = newZombie("heap");
-	zombie->announce();
-	delete zombie;
+	name = NewName;
 }
