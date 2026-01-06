@@ -1,4 +1,4 @@
-NAME = program
+NAME = Harl
 SRC = main.cpp Harl.cpp
 CC = c++
 RM = rm -rf

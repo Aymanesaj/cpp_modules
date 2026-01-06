@@ -8,5 +8,5 @@ Zombie* zombieHorde( int N, std::string name )
     {
         zombies[i].SetName(name);
     }
-    return (zombies);    
+    return (zombies);
 }

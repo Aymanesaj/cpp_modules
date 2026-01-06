@@ -8,4 +8,5 @@ int main()
 	two.takeDamage(20);
 	two.beRepaired(20);
 	one.highFivesGuys();
+	two.whoAmI();
 }

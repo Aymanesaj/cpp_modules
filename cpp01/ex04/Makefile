@@ -1,4 +1,4 @@
-NAME = program
+NAME = replace
 SRC = main.cpp
 CC = c++
 RM = rm -rf

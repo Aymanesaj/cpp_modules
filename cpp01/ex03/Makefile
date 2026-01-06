@@ -1,4 +1,4 @@
-NAME = program
+NAME = weapon
 SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 CC = c++
 RM = rm -rf

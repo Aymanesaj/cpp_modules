@@ -1,5 +1,5 @@
-NAME = FragTrap
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+NAME = DiamondTrap
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 CC = c++
 RM = rm -rf
 CFLAGS = -Wall -Wextra -Werror -std=c++98

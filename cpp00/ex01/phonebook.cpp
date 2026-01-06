@@ -1,20 +1,72 @@
 #include "PhoneBook.hpp"
 
-int main()
+PhoneBook::PhoneBook() {size = 0;index = 0;}
+
+void	PhoneBook::SearchPrompt()
 {
-	PhoneBook phonebook;
-	std::string input;
-	while (true)
+	std::cout << "--------------------------------------------" << std::endl;
+	std::cout << "|   index  |first name|last name | nickname |" << std::endl;
+	std::cout << "--------------------------------------------" << std::endl;
+	for (int i = 0; i < size; i++)
 	{
-		std::cout << "Enter command (ADD, SEARCH, EXIT): ";
-		UI::ReadLineOrExit(input);
-		if (input == "EXIT")
-			break ;
-		else if (input == "ADD")
-			phonebook.AddContact();
-		else if (input == "SEARCH")
-			phonebook.SearchPhonebook();
-		else
-			std::cerr << "Invalid Command" << std::endl;
+		std::cout << "|    " << i << "     |";
+		UI::DisplayColumns(contacts[i].getFirstName());
+		UI::DisplayColumns(contacts[i].getLastName());
+		UI::DisplayColumns(contacts[i].getNickname());
+		std::cout << std::endl;
 	}
+	std::cout << std::endl;
+}
+
+void	PhoneBook::SearchPhonebook()
+{
+	SearchPrompt();
+	std::cout << "Enter index (0-7): ";
+	int idx;
+	std::string s;
+	UI::ReadLineOrExit(s);
+	while (!UI::IsNumber(s))
+	{
+		std::cerr << "Invalid input" << std::endl;
+		std::cout << "Enter index (0-7): ";
+		UI::ReadLineOrExit(s);
+	}
+	std::stringstream ss(s);
+	ss >> idx;
+	if (idx < 0 || idx > 7 || idx >= size)
+	{
+		std::cerr << "Invalid Index" << std::endl;
+		return ;
+	}
+	contacts[idx].display();
+}
+
+void	PhoneBook::AddContact()
+{
+	std::string	input;
+
+	std::cout << "What's your First Name :";
+	UI::ReadLineOrExit(input);
+	contacts[index].setFirstName(input);
+	std::cout << "What's your Last Name :";
+	UI::ReadLineOrExit(input);
+	contacts[index].setLastName(input);
+	std::cout << "What's your NickName :";
+	UI::ReadLineOrExit(input);
+	contacts[index].setNickname(input);
+	std::cout << "What's your Phone Number :";
+	UI::ReadLineOrExit(input);
+	while (!UI::IsNumber(input))
+	{
+		std::cerr << "Invalid Phone Number" << std::endl;
+		std::cout << "What's your Phone Number :";
+		UI::ReadLineOrExit(input);
+	}
+	contacts[index].setPhoneNumber(input);
+	std::cout << "What's your Darkest Secret :";
+	UI::ReadLineOrExit(input);
+	contacts[index].setDarkestSecret(input);
+	index = (index + 1) % 8;
+	if (size < 8)
+		size++;
 }

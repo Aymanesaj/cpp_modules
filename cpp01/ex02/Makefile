@@ -1,4 +1,4 @@
-NAME = program
+NAME = brain
 SRC = main.cpp
 CC = c++
 RM = rm -rf

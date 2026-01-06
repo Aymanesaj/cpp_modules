@@ -27,12 +27,32 @@ void    Harl::error()
 int Harl::GetLevel( std::string level )
 {
     std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int j = 4;
     for (size_t i = 0; i < 4; i++)
     {
         if (levels[i] == level)
         {
-            return (i);
+            j = i;
+            break ;
         }
+    }
+    switch (j)
+    {
+        case 0:
+            debug();
+        case 1:
+            info();
+        case 2:
+            warning();
+        case 3:
+        {
+            error();
+            break ;
+        }
+    
+    default:
+        std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+        break;
     }
     return (-1);
 }
