@@ -37,7 +37,7 @@ const char *Form::AlreadySigned::what() const throw()
     return "This form is already signed";
 }
 
-void Form::beSigned(Bureaucrat &b)
+void Form::beSigned(Bureaucrat const &b)
 {
     if (getIsSigned())
         throw AlreadySigned();

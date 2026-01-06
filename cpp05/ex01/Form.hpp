@@ -19,7 +19,7 @@ public:
     Form& operator=(const Form& other);
     ~Form();
     Form(std::string name, int grade_sign, int grade_execute);
-    void beSigned(Bureaucrat &b);
+    void beSigned(Bureaucrat const &b);
     const std::string &getName() const;
     int getGradeSign() const;
     int getGradeExecute() const;

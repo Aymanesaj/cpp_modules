@@ -1,10 +1,10 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp Bureaucrat.cpp Form.cpp
-INCLUDES = Bureaucrat.hpp Form.hpp
+SRC = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp  RobotomyRequestForm.cpp  ShrubberyCreationForm.cpp
+INCLUDES = Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp  RobotomyRequestForm.hpp  ShrubberyCreationForm.hpp
 OBJS = $(SRC:.cpp=.o)
 RM = rm -rf
-NAME = Bureaucrat
+NAME = Forms
 
 all : $(NAME)
 

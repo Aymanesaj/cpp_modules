@@ -1,3 +1,6 @@
+#ifndef RRF
+#define RRF
+
 #include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm
@@ -13,3 +16,5 @@ class RobotomyRequestForm : public AForm
     protected:
         void    Action() const;
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef PPF
+#define PPF
+
 #include "AForm.hpp"
 
 class PresidentialPardonForm : public AForm
@@ -13,3 +16,5 @@ class PresidentialPardonForm : public AForm
     protected:
         void    Action() const;
 };
+
+#endif
