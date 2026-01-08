@@ -9,29 +9,29 @@ void	Detect::print(double value, bool overflow, std::string literal, type type)
 	char c = static_cast<char>(value);
 	if (overflow || isPseudo(literal) || isPseudo(str) || value < 0 || value > 127)
 		std::cout << "char: impossible" << std::endl;
-	else if (!std::isprint(c))
+	else if (!std::isprint((unsigned char)c))
 		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "char: " << c << std::endl;
+		std::cout << "char: " << '\'' << c << '\'' << std::endl;
 	// int
 	int i = static_cast<int>(value);
 	if (overflow || isPseudo(literal) || isPseudo(str))
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << i << std::endl;
-
 	// float
 	float f = static_cast<float>(value);
 	char *end;
 	errno = 0;
-	value = std::strtod(literal.c_str(), &end);
-	if (type != c && (value > FLT_MAX || value == -FLT_MAX) && errno == ERANGE)
+	double tmp;
+	tmp = std::strtod(literal.c_str(), &end);
+	if (type != c && (tmp > FLT_MAX || tmp == -FLT_MAX) && errno == ERANGE)
 	{
-		if ((value > FLT_MAX || value == -FLT_MAX) && errno == ERANGE)
+		if ((tmp > FLT_MAX || tmp == -FLT_MAX) && errno == ERANGE)
 			std::cout << "float: impossible" << std::endl;
 	}
 	else if ((long long)value == value)
-		std::cout << "float: " << f << ".0f" << std::endl;
+		std::cout << std::fixed << std::setprecision(1) << "float: " << f << "f" << std::endl;
 	else
 		std::cout << "float: " << f << "f" << std::endl;
 	// double
@@ -41,7 +41,7 @@ void	Detect::print(double value, bool overflow, std::string literal, type type)
 	if (type != c && (value == HUGE_VAL || value == -HUGE_VAL) && errno == ERANGE)
 		std::cout << "double: impossible" << std::endl;
 	else if ((long long)value == value)
-		std::cout << "double: " << d << ".0" << std::endl;
+		std::cout << std::fixed << std::setprecision(1) << "double: " << d << std::endl;
 	else
 		std::cout << "double: " << d << std::endl;
 }
@@ -50,8 +50,10 @@ bool	Detect::overflow(const std::string &literal)
 {
 	char *endptr;
 	errno = 0;
-	long l = std::strtol(literal.c_str(), &endptr, 10);
-	if (errno == ERANGE || l > std::numeric_limits<int>::max() || l < std::numeric_limits<int>::min())
+	double l = std::strtod(literal.c_str(), &endptr);
+	if (errno == ERANGE || l > std::numeric_limits<int>::max()
+		|| l < std::numeric_limits<int>::min() || l == HUGE_VAL
+		|| l == -HUGE_VAL)
 		return (true);
 	return (false);
 }

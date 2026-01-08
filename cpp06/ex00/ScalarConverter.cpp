@@ -48,7 +48,10 @@ void ScalarConverter::convert(const std::string &literal)
 			break;
 		}
 		case d:
+		{
 			value = std::strtod(literal.c_str(), &endptr);
+			overflow = Detect::overflow(literal);
+		}
 			break;
 		default:
 			std::cout << "The type conversion is impossible." << std::endl;
