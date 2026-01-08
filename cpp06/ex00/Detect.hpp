@@ -10,7 +10,7 @@
 #include <vector>
 #include <iomanip>
 #include <cfloat>
-#include <errno.h>
+#include <cerrno>
 
 enum type {c, i, f, d, invalid};
 
