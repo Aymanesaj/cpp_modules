@@ -4,7 +4,8 @@ void	Detect::print(double value, bool overflow, std::string literal, type type)
 {
 	// char
 	std::string str = literal;
-	str.erase(str.end() - 1);
+	if (!str.empty())
+		str.erase(str.end() - 1);
 	char c = static_cast<char>(value);
 	if (overflow || isPseudo(literal) || isPseudo(str) || value < 0 || value > 127)
 		std::cout << "char: impossible" << std::endl;

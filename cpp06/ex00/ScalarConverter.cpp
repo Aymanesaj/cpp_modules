@@ -14,6 +14,11 @@ ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(const std::string &literal)
 {
+	if (literal == "")
+	{
+		std::cout << "The type conversion is impossible." << std::endl;
+		return;
+	}
 	type type = Detect::Detectliteral(literal);
 	double value;
 	char *endptr;
