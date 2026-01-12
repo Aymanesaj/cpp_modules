@@ -44,22 +44,19 @@ void identify(Base& p)
 		(void)dynamic_cast<A&>(p);
 		std::cout << "The type of the object referenced by p is A" << std::endl;
 		return ;
-	}
-	catch (const std::exception&) {}
+	} catch (...) {}
 	try
 	{
 		(void)dynamic_cast<B&>(p);
 		std::cout << "The type of the object referenced by p is B" << std::endl;
 		return ;
-	}
-	catch (const std::exception&) {}
+	} catch (...) {}
 	try
 	{
 		(void)dynamic_cast<C&>(p);
 		std::cout << "The type of the object referenced by p is C" << std::endl;
 		return ;
-	}
-	catch (const std::exception&) {}
+	} catch (...) {}
 }
 
 int main()
