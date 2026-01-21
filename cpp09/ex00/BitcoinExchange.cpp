@@ -94,10 +94,14 @@ bool	BitcoinExchange::isValidDate(std::string &date)
 	std::getline(date_ss, year_str, '-');
 	std::getline(date_ss, month_str, '-');
 	std::getline(date_ss, day_str);
+	boost::trim(year_str);
+	boost::trim(month_str);
+	boost::trim(day_str);
 	int	year = ft_atoi(year_str) - 1900;
 	int	month = ft_atoi(month_str) - 1;
 	int	day = ft_atoi(day_str);
-	if (year < 0 || day < 0 || month < 0 || year > 2026 - 1900)
+	if ( year_str.length() != 4 || month_str.length() != 2 || day_str.length() != 2
+		|| year < 0 || day < 0 || month < 0 || year > 2026 - 1900)
 	{
 		std::cout << "Error: bad input => " << line << std::endl;
 		return (false);

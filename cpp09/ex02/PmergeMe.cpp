@@ -21,24 +21,38 @@ PmergeMe::PmergeMe(char *av)
 	parse(av);
 }
 
+bool PmergeMe::toIntSafe(const std::string &s, int &out) {
+    errno = 0;
+    char *endptr = 0;
+
+    long val = std::strtol(s.c_str(), &endptr, 10);
+    if (endptr == s.c_str() || *endptr != '\0' || errno == ERANGE
+        || val < INT_MIN || val > INT_MAX)
+        return false;
+    out = (int)val;
+    return true;
+}
+
 void     PmergeMe::parse( char *av )
 {
-	// size_t i = 0;
-    // while (av[i] && std::isspace(av[i])) ++i;
-    // if (!av[i])
-    //     errorAndExit(); 
-    // for (; av[i]; ++i)
-    // {
-    //     if (std::isspace(av[i]))
-    //         continue;
-    //     if (std::isdigit(av[i]))
-    //     {
-    //         ++i;
-    //         if ((!av[i] || !std::isspace(av[i]))) break;
-    //     }
-    //     else
-    //         break;
-    // }
+	size_t i = 0;
+    while (av[i] && std::isspace(av[i])) ++i;
+    if (!av[i])
+        errorAndExit();
+    for (; av[i]; ++i)
+        if (!std::isspace(av[i]) && !std::isdigit(av[i])) break;
+    if (av[i])
+        errorAndExit();
+    std::stringstream ss(av);
+    int x;
+    std::string str;
+    while (ss >> str)
+    {
+        if (!toIntSafe(str, x))
+            errorAndExit();
+        nums_v.push_back(x);
+        nums_d.push_back(x);
+    }
 }
 
 void     PmergeMe::errorAndExit( void )

@@ -9,10 +9,14 @@
 #include <deque>
 #include <cerrno>
 #include <limits>
+#include <climits>
+#include <sstream>
 
 class PmergeMe
 {
 private:
+    std::vector<int> nums_v;
+    std::deque<int> nums_d;
 public:
     PmergeMe();
     PmergeMe(char *av);
@@ -22,6 +26,7 @@ public:
     int ft_atoi(std::string& num);
     static void     errorAndExit( void );
     void    parse(char *av);
+    bool toIntSafe(const std::string &s, int &out);
 };
 
 #endif
