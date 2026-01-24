@@ -11,6 +11,8 @@
 #include <limits>
 #include <climits>
 #include <sstream>
+#include <utility>
+#include <ctime>
 
 class PmergeMe
 {
@@ -19,14 +21,15 @@ private:
     std::deque<int> nums_d;
 public:
     PmergeMe();
-    PmergeMe(char *av);
+    PmergeMe(char **av);
     PmergeMe(const PmergeMe& other);
 	PmergeMe& operator=(const PmergeMe& other);
     ~PmergeMe();
-    int ft_atoi(std::string& num);
     static void     errorAndExit( void );
-    void    parse(char *av);
+    void    parse(char **av);
     bool toIntSafe(const std::string &s, int &out);
+    void    sort_vec( std::vector<int> &nums );
+    void    sort_deq( std::deque<int> &nums );
 };
 
 #endif

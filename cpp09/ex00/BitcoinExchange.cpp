@@ -1,5 +1,20 @@
 #include "BitcoinExchange.hpp"
 
+void    trim(std::string &str)
+{
+	if (str.empty())
+        return ;
+    int i = 0;
+    while (str[i] && std::isspace(str[i])) ++i;
+    if (!str[i]){
+        str = "";
+        return ;
+    }
+    int j = str.length() - 1;
+    while (j > 0 && std::isspace(str[j])) --j;
+    str = str.substr(i, j - i + 1);
+}
+
 BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
@@ -53,7 +68,7 @@ float	BitcoinExchange::ValidRate(std::string &value)
 {
 	errno = 0;
 	char *endptr = NULL;
-	boost::trim(value);
+	trim(value);
 	float rate = std::strtof(value.c_str(), &endptr);
 	if (*endptr != '\0' || endptr == value.c_str())
 		std::cout << "Error: bad input => " << line << std::endl;
@@ -70,7 +85,7 @@ int		BitcoinExchange::ft_atoi(std::string& num)
 {
 	errno = 0;
 	char *endptr = NULL;
-	boost::trim(num);
+	trim(num);
 	long rate = std::strtol(num.c_str(), &endptr, 10);
 	if (*endptr != '\0' || endptr == num.c_str() || errno == ERANGE || rate > std::numeric_limits<int>::max()
 		|| rate < 0)
@@ -80,7 +95,7 @@ int		BitcoinExchange::ft_atoi(std::string& num)
 
 bool	BitcoinExchange::isValidDate(std::string &date)
 {
-	boost::trim(date);
+	trim(date);
 	int	count = std::count(date.begin(), date.end(), '-');
 	if (count != 2)
 	{
@@ -94,9 +109,9 @@ bool	BitcoinExchange::isValidDate(std::string &date)
 	std::getline(date_ss, year_str, '-');
 	std::getline(date_ss, month_str, '-');
 	std::getline(date_ss, day_str);
-	boost::trim(year_str);
-	boost::trim(month_str);
-	boost::trim(day_str);
+	trim(year_str);
+	trim(month_str);
+	trim(day_str);
 	int	year = ft_atoi(year_str) - 1900;
 	int	month = ft_atoi(month_str) - 1;
 	int	day = ft_atoi(day_str);
@@ -123,11 +138,12 @@ bool	BitcoinExchange::isValidDate(std::string &date)
 
 void	BitcoinExchange::ValidateInput(std::ifstream &input)
 {
-	std::getline(input, line);
 	std::string date;
 	std::string value;
 	while (std::getline(input, line))
 	{
+		if (line == "date | value")
+			continue;
 		std::stringstream ss(line);
 		int count = std::count(line.begin(), line.end(), '|');
 		if (count != 1){
